@@ -80,6 +80,11 @@ button:hover {
     margin-bottom: 10px;
 }
 
+.btn-delete {
+    margin-top: 5px;
+    background: red;
+}
+
 #buscar {
     width: 100%;
     padding: 10px;
