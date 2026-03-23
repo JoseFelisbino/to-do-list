@@ -65,7 +65,7 @@ button {
 }
 
 button:hover {
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 #lista-tarefas {
@@ -74,15 +74,57 @@ button:hover {
 }
 
 #lista-tarefas li {
-    background: var(--cor-secundaria);
-    padding: 10px;
-    border-radius: 5px;
+    background: var(--cor-branco);
+    padding: 15px;
+    border-radius: 8px;
     margin-bottom: 10px;
+    border-left: 5px solid var(--cor-primaria);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.status {
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.status.pendente {
+    background: orange;
+    color: white;
+}
+
+.status.concluida {
+    background: green;
+    color: white;
 }
 
 .btn-delete {
-    margin-top: 5px;
-    background: red;
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 #buscar {
@@ -91,6 +133,11 @@ button:hover {
     margin-top: 10px;
     border: 1px solid var(--cor-borda);
     border-radius: 5px;
+}
+
+form button {
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
