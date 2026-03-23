@@ -18,4 +18,5 @@ public record TarefaRequest(
 
         @NotNull(message = "O status é obrigatório")
         Status status
-) {}
+) {
+}
