@@ -1,9 +1,13 @@
 package todolist.dto.tarefa;
 
+import todolist.model.Status;
+
+import java.time.LocalDate;
+
 public record TarefaResponse(
         Long id,
         String titulo,
         String descricao,
-        String dataPrevista,
-        String status
+        LocalDate dataPrevista,
+        Status status
 ) {}
