@@ -2,6 +2,7 @@ const API = "https://to-do-list-1-5ou2.onrender.com/tarefas";
 
 const lista = document.getElementById("lista-tarefas");
 const form = document.getElementById("form-tarefa");
+const buscarInput = document.getElementById("buscar");
 
 async function carregarTarefas() {
     try {
@@ -13,6 +14,25 @@ async function carregarTarefas() {
         console.error("Erro ao carregar tarefas:", erro);
     }
 }
+
+buscarInput.addEventListener("input", async () => {
+    const termo = buscarInput.value;
+
+    if (termo === "") {
+        carregarTarefas();
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API}/search?titulo=${termo}`);
+        const tarefas = await response.json();
+
+        renderizarTarefas(tarefas);
+
+    } catch (erro) {
+        console.error("Erro na busca:", erro);
+    }
+});
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
