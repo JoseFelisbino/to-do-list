@@ -1,0 +1,22 @@
+:root {
+    --cor-primaria: #4CAF50;
+    --cor-fundo: #f4f4f4;
+    --cor-texto: #333;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--cor-fundo);
+}
+
+.header {
+    background: var(--cor-primaria);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.container {
+    padding: 20px;
+}

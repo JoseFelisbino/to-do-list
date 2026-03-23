@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Lista de Tarefas</h1>
+    </header>
+    <main class="container">
+        <section class="form-section">
+            <h2>Nova Tarefa</h2>
+            <form id="form-tarefa">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="dataPrevista">Data</label>
+                    <input type="date" id="dataPrevista" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="PENDENTE">Pendente</option>
+                        <option value="CONCLUIDA">Concluída</option>
+                    </select>
+                </div>
+                <button type="submit">Adicionar</button>
+            </form>
+        </section>
+        <section class="lista-section">
+            <h2>Tarefas</h2>
+            <input type="text" id="buscar" placeholder="Buscar tarefa...">
+            <ul id="lista-tarefas"></ul>
+        </section>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
