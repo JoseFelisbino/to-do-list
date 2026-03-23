@@ -41,6 +41,19 @@ form.addEventListener("submit", async (e) => {
     }
 });
 
+async function deletar(id) {
+    try {
+        await fetch(`${API}/${id}`, {
+            method: "DELETE"
+        });
+
+        carregarTarefas();
+
+    } catch (erro) {
+        console.error("Erro ao deletar:", erro);
+    }
+}
+
 function renderizarTarefas(tarefas) {
     lista.innerHTML = "";
 
@@ -51,7 +64,10 @@ function renderizarTarefas(tarefas) {
             <strong>${tarefa.titulo}</strong><br>
             <small>${tarefa.descricao || ""}</small><br>
             <small>${tarefa.dataPrevista}</small><br>
-            <small>Status: ${tarefa.status}</small>
+            <small>Status: ${tarefa.status}</small><br>
+            <button class="btn-delete" onclick="deletar(${tarefa.id})">
+                Excluir
+            </button>
         `;
 
         lista.appendChild(li);
