@@ -28,6 +28,8 @@ async function carregarTarefas() {
     } catch (erro) {
         console.error("Erro ao carregar tarefas:", erro);
     }
+
+    atualizarBotao();
 }
 
 buscarInput.addEventListener("input", async () => {
@@ -67,6 +69,7 @@ form.addEventListener("submit", async (e) => {
                 body: JSON.stringify(tarefa)
             });
 
+            alert("Tarefa atualizada!"); 
             tarefaEditandoId = null;
 
         } else {
@@ -75,6 +78,8 @@ form.addEventListener("submit", async (e) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(tarefa)
             });
+
+            alert("Tarefa criada!");
         }
 
         form.reset();
@@ -87,6 +92,9 @@ form.addEventListener("submit", async (e) => {
 });
 
 async function deletar(id) {
+
+    if (!confirm("Deseja realmente excluir essa tarefa?")) return;
+
     try {
         await fetch(`${API}/${id}`, {
             method: "DELETE"
@@ -98,6 +106,7 @@ async function deletar(id) {
         console.error("Erro ao deletar:", erro);
     }
 }
+
 
 function editar(id) {
     const tarefa = listaTarefas.find(t => t.id === id);
@@ -117,25 +126,30 @@ function renderizarTarefas(tarefas) {
     tarefas.forEach(tarefa => {
         const li = document.createElement("li");
 
+       const statusClasse = tarefa.status === "PENDENTE" ? "pendente" : "concluida";
+
         li.innerHTML = `
-            <strong>${tarefa.titulo}</strong><br>
-            <small>${tarefa.descricao || ""}</small><br>
-            <small>${tarefa.dataPrevista}</small><br>
-            <small>Status: ${tarefa.status}</small><br>
+        <strong>${tarefa.titulo}</strong>
+        <small>${tarefa.descricao || ""}</small>
+        <small>${tarefa.dataPrevista}</small>
+
+        <span class="status ${statusClasse}">
+            ${tarefa.status}
+        </span>
+
+        <div class="acoes">
+            <button class="btn-edit" onclick="editar(${tarefa.id})">
+                Editar
+            </button>
+
             <button class="btn-delete" onclick="deletar(${tarefa.id})">
                 Excluir
             </button>
-            <button onclick="editar(${tarefa.id})">
-            Editar
-            </button>
-        `;
+        </div>
+`;
 
         lista.appendChild(li);
     });
 }
 
-form.querySelector("button").textContent = tarefaEditandoId
-    ? "Atualizar"
-    : "Adicionar";
-
-carregarTarefas();
+carregarTarefas(); 
